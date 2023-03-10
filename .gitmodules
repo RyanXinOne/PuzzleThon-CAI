@@ -1,0 +1,3 @@
+[submodule "PuzzleThon"]
+	path = PuzzleThon
+	url = https://github.com/ManchesterRoboticsLtd/PuzzleThon.git
