@@ -1,0 +1,8 @@
+{
+    "git.ignoredRepositories": [
+        "PuzzleThon"
+    ],
+    "git.ignoreSubmodules": true,
+    "cmake.configureOnOpen": false,
+    "cmake.ignoreCMakeListsMissing": true
+}
