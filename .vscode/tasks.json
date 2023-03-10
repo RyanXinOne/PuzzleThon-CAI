@@ -2,13 +2,50 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "catkin_make: build",
+            "type": "shell",
+            "problemMatcher": [],
             "command": "catkin_make",
             "args": [
                 "--directory",
-                "${workspaceFolder}/catkin_ws",
+                "${workspaceFolder}/catkin_ws"
             ],
-            "group": "build",
-            "label": "catkin_make: build"
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Start roscore",
+            "type": "shell",
+            "problemMatcher": [],
+            "command": "roscore"
+        },
+        {
+            "label": "Launch simulator",
+            "type": "shell",
+            "problemMatcher": [],
+            "command": [
+                "source",
+                "${workspaceFolder}/catkin_ws/devel/setup.bash",
+                "&&",
+                "roslaunch",
+                "puzzlebot_world",
+                "puzzlebot_simple_world.launch"
+            ]
+        },
+        {
+            "label": "Launch caibot-brain",
+            "type": "shell",
+            "problemMatcher": [],
+            "command": [
+                "source",
+                "${workspaceFolder}/catkin_ws/devel/setup.bash",
+                "&&",
+                "rosrun",
+                "Caibot_brain",
+                "main_node"
+            ]
         }
     ]
 }
