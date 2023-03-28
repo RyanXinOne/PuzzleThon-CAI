@@ -5,11 +5,7 @@
             "label": "catkin_make: build",
             "type": "shell",
             "problemMatcher": [],
-            "command": "catkin_make",
-            "args": [
-                "--directory",
-                "${workspaceFolder}/catkin_ws"
-            ],
+            "command": "catkin_make --directory ${workspaceFolder}/catkin_ws",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -26,12 +22,9 @@
             "type": "shell",
             "problemMatcher": [],
             "command": [
-                "source",
-                "${workspaceFolder}/catkin_ws/devel/setup.bash",
+                "source ${workspaceFolder}/catkin_ws/devel/setup.bash",
                 "&&",
-                "roslaunch",
-                "puzzlebot_world",
-                "puzzlebot_simple_world.launch"
+                "roslaunch puzzlebot_world puzzlebot_simple_world.launch"
             ]
         },
         {
@@ -39,12 +32,9 @@
             "type": "shell",
             "problemMatcher": [],
             "command": [
-                "source",
-                "${workspaceFolder}/catkin_ws/devel/setup.bash",
+                "source ${workspaceFolder}/catkin_ws/devel/setup.bash",
                 "&&",
-                "rosrun",
-                "Caibot_brain",
-                "main_node"
+                "rosrun caibot_brain main_node"
             ]
         }
     ]
