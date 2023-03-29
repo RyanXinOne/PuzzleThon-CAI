@@ -28,13 +28,13 @@
             ]
         },
         {
-            "label": "Launch caibot-brain",
+            "label": "Launch cai_brain",
             "type": "shell",
             "problemMatcher": [],
             "command": [
                 "source ${workspaceFolder}/catkin_ws/devel/setup.bash",
                 "&&",
-                "rosrun caibot_brain main_node"
+                "rosrun cai_brain main_node"
             ]
         }
     ]
