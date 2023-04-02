@@ -5,5 +5,8 @@
     "git.ignoreSubmodules": true,
     "cmake.configureOnOpen": false,
     "cmake.ignoreCMakeListsMissing": true,
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    }
 }

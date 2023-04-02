@@ -34,7 +34,7 @@
             "command": [
                 "source ${workspaceFolder}/catkin_ws/devel/setup.bash",
                 "&&",
-                "rosrun cai_brain main_node"
+                "rosrun cai_brain cai_brain_node"
             ]
         }
     ]
