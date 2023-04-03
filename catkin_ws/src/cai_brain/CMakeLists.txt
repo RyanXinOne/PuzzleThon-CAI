@@ -7,7 +7,7 @@ add_compile_options(-std=c++11)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp std_msgs geometry_msgs)
+find_package(catkin REQUIRED COMPONENTS roscpp std_msgs geometry_msgs sensor_msgs)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -101,7 +101,7 @@ find_package(catkin REQUIRED COMPONENTS roscpp std_msgs geometry_msgs)
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES cai_brain
-   CATKIN_DEPENDS roscpp std_msgs geometry_msgs
+   CATKIN_DEPENDS roscpp std_msgs geometry_msgs sensor_msgs
 #  DEPENDS system_lib
 )
 

@@ -1,11 +1,13 @@
 #include <ros/ros.h>
 #include <std_msgs/Float32.h>
 #include <geometry_msgs/Twist.h>
+#include <sensor_msgs/Image.h>
 
 double w_l, w_r;
 
 void wl_callback(const std_msgs::Float32::ConstPtr &msg);
 void wr_callback(const std_msgs::Float32::ConstPtr &msg);
+void camera_callback(const sensor_msgs::ImageConstPtr &msg);
 
 int main(int argc, char *argv[])
 {
@@ -16,9 +18,10 @@ int main(int argc, char *argv[])
     w_r = 0;
 
     ros::NodeHandle nh;
-    ros::Subscriber sub_wl = nh.subscribe("wl", 10, wl_callback);
-    ros::Subscriber sub_wr = nh.subscribe("wr", 10, wr_callback);
-    ros::Publisher pub_cmd_vel = nh.advertise<geometry_msgs::Twist>("cmd_vel", 100);
+    ros::Subscriber sub_wl = nh.subscribe("/wl", 10, wl_callback);
+    ros::Subscriber sub_wr = nh.subscribe("/wr", 10, wr_callback);
+    ros::Subscriber sub = nh.subscribe("/camera/image_raw", 10, camera_callback);
+    ros::Publisher pub_cmd_vel = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 100);
 
     ros::Rate loop_rate(100);
     double v = 0.5;
@@ -46,4 +49,9 @@ void wl_callback(const std_msgs::Float32::ConstPtr &msg)
 void wr_callback(const std_msgs::Float32::ConstPtr &msg)
 {
     w_r = msg->data;
+}
+
+void camera_callback(const sensor_msgs::ImageConstPtr &msg)
+{
+    ROS_INFO("Image received");
 }
