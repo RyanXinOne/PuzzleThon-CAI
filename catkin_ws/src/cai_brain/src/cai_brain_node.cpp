@@ -2,6 +2,8 @@
 #include <std_msgs/Float32.h>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/Image.h>
+#include <cv_bridge/cv_bridge.h>
+#include <opencv2/opencv.hpp>
 
 double w_l, w_r;
 
@@ -53,5 +55,9 @@ void wr_callback(const std_msgs::Float32::ConstPtr &msg)
 
 void camera_callback(const sensor_msgs::ImageConstPtr &msg)
 {
-    ROS_INFO("Image received");
+    cv_bridge::CvImagePtr cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+
+    cv::Mat image = cv_ptr->image;
+    cv::imshow("Camera Image", image);
+    cv::waitKey(1);
 }
