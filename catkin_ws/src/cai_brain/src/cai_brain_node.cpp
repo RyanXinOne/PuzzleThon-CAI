@@ -26,8 +26,8 @@ int main(int argc, char *argv[])
     ros::Publisher pub_cmd_vel = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 100);
 
     ros::Rate loop_rate(100);
-    double v = 0.5;
-    double w = 3;
+    double v = 0.1;
+    double w = 0;
     while (ros::ok())
     {
         ros::spinOnce();
