@@ -32,6 +32,8 @@
             "type": "shell",
             "problemMatcher": [],
             "command": [
+                "source ros_remote_setup.sh",
+                "&&",
                 "source ${workspaceFolder}/catkin_ws/devel/setup.bash",
                 "&&",
                 "rosrun cai_brain cai_brain_node"
