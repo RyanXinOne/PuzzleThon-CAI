@@ -74,6 +74,12 @@ void camera_callback(const sensor_msgs::ImageConstPtr &msg)
     ROS_INFO("middle lane: %lf", mid_lane);
     if (mid_lane > -1)
     {
+        if (mid_lane >= 0.47 && mid_lane <= 0.53){
+            v = 0.2;
+        }
+        else{
+            v = V_INI;
+        }
         double error = mid_lane - 0.5;
         w = -K_P * error;
     }
