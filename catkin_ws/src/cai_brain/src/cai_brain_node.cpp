@@ -10,7 +10,7 @@ using namespace std;
 
 double V_INI = 0.05;
 double W_INI = 0;
-double K_P = 2;
+double K_P = 0.2;
 
 double v, w;
 double w_l, w_r;
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     ros::NodeHandle nh;
     ros::Subscriber sub_wl = nh.subscribe("/wl", 10, wl_callback);
     ros::Subscriber sub_wr = nh.subscribe("/wr", 10, wr_callback);
-    ros::Subscriber sub = nh.subscribe("/camera/image_raw", 10, camera_callback);
+    ros::Subscriber sub = nh.subscribe("/video_source/raw", 10, camera_callback);
     ros::Publisher pub_cmd_vel = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 100);
 
     ros::Rate loop_rate(10);
@@ -66,6 +66,7 @@ void camera_callback(const sensor_msgs::ImageConstPtr &msg)
 {
     cv_bridge::CvImagePtr cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
     cv::Mat image = cv_ptr->image;
+    cv::rotate(image, image, cv::ROTATE_180);
     cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
 
     // central of white region
@@ -77,21 +78,21 @@ void camera_callback(const sensor_msgs::ImageConstPtr &msg)
         w = -K_P * error;
     }
 
-    cv::imshow("camera", image);
-    cv::waitKey(1);
+    // cv::imshow("camera", image);
+    // cv::waitKey(1);
 }
 
 // find middle lane position [0, 1] in input image
 double locate_middle_lane(cv::Mat &image)
 {
     int margin = image.cols / 5;
-    int threshold = 150;
+    int threshold = 80;
 
     vector<int> pixel_candidates;
     for (int i = margin; i < image.cols - margin; i++)
     {
         // last row as the scan line
-        if (image.at<uchar>(image.rows - 1, i) > threshold)
+        if (image.at<uchar>(image.rows - 1, i) < threshold)
         {
             pixel_candidates.push_back(i);
         }
